@@ -1,6 +1,6 @@
-#React template
+#React weather app
 
-This is a basic react app template.
+This is a react weather app.
 
 Project for Udemy React course.
 
