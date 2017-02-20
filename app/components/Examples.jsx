@@ -3,7 +3,10 @@ var React = require("react")
 // stateless functional component
 var Examples = (props) => {
     return (
-        <h2>Examples component</h2>
+        <div>
+            <h2>Examples</h2> 
+            <p> Welcome to the examples page! </p>
+        </div>
     )
 };
 

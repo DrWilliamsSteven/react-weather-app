@@ -13666,13 +13666,21 @@ function hasOwnProperty(obj, prop) {
 
 var React = __webpack_require__(3);
 
-// stateless functional component
 var About = function About(props) {
-  return React.createElement(
-    "h2",
-    null,
-    "About component"
-  );
+    return React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h2",
+            null,
+            "About"
+        ),
+        React.createElement(
+            "p",
+            null,
+            " Details of the weather app! "
+        )
+    );
 };
 
 module.exports = About;
@@ -13689,9 +13697,18 @@ var React = __webpack_require__(3);
 // stateless functional component
 var Examples = function Examples(props) {
     return React.createElement(
-        "h2",
+        "div",
         null,
-        "Examples component"
+        React.createElement(
+            "h2",
+            null,
+            "Examples"
+        ),
+        React.createElement(
+            "p",
+            null,
+            " Welcome to the examples page! "
+        )
     );
 };
 
