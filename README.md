@@ -1,6 +1,6 @@
-#Under constructions
+#React template
 
-This is a basic react app.
+This is a basic react app template.
 
 Project for Udemy React course.
 
