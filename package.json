@@ -4,15 +4,15 @@
   "description": "learn react",
   "main": "server.js",
   "author": "Steven Williams",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "ISC",
   "dependencies": {
     "express": "^4.14.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
-  "scripts": {
-    "start": "node server.js"
-  },
-  "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
