@@ -1,7 +1,9 @@
 var axios = require("axios");
+// var dotenv = require('dotenv');
+// dotenv.load();
 
-const OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?appid=019700bea46aefef94087796e92df3d6&units=metric'
-
+var KEY = process.env.WEATHER_API_KEY;
+var OPEN_WEATHER_MAP_URL = 'http://api.openweathermap.org/data/2.5/weather?units=metric&appid=' + KEY;
 
 module.exports = {
     getTemp: function(location) {

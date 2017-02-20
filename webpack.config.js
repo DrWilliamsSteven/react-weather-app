@@ -1,3 +1,5 @@
+const Dotenv = require('dotenv-webpack');
+
 module.exports = {
     entry: './app/app.jsx',
     output: {
@@ -31,5 +33,17 @@ module.exports = {
             test: /\.jsx?$/,
             exclude: /(node_modules|bower_components)/
         }]
+    },
+    plugins: [
+        new Dotenv({
+            path: '.env',
+            safe: false
+        })
+    ],
+    node: {
+        console: true,
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
     }
 };
