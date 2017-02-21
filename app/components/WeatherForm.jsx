@@ -1,4 +1,5 @@
 var React = require("react")
+import { Button } from 'react-bootstrap';
 
 var WeatherForm = React.createClass({
     onFormSubmit: function(e) {
@@ -17,6 +18,7 @@ var WeatherForm = React.createClass({
                 <form onSubmit={this.onFormSubmit}>
                     <input type="text" ref="location"></input>
                     <button>Get Weather</button>
+                    <Button bsStyle="primary">React bootstrap button</Button>
                 </form>
             </div>
 
