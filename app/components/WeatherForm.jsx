@@ -1,26 +1,18 @@
 var React = require("react")
+var ReactDOM = require("react-dom")
 import { Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
 var WeatherForm = React.createClass({
-    getInitialState() {
-        return {
-            value: ''
-        };
-    },
-
     onFormSubmit: function(e) {
         e.preventDefault();
 
-        var location = this.state.value
+        var location = ReactDOM.findDOMNode(this.refs.location).value;
         if (location.length > 0) {
-            this.setState({ value: '' });
+            ReactDOM.findDOMNode(this.refs.location).value = '';
             this.props.onSearch(location);
         }
     },
 
-    handleChange(e) {
-        this.setState({ value: e.target.value });
-    },
 
     render: function() {
         return (
@@ -30,8 +22,7 @@ var WeatherForm = React.createClass({
                       <FormControl
                         type="text"
                         placeholder="Enter city name"
-                        value={this.state.value}
-                        onChange={this.handleChange}
+                        ref="location"
                       />
                     </FormGroup>
                     <Button type='submit' bsStyle="primary" bsSize="large" block>Get weather!</Button>

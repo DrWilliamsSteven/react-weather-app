@@ -22169,7 +22169,9 @@ var Nav_inst = React.createClass({
 
   onSearch: function onSearch(e) {
     e.preventDefault();
-    console.log('Not wired up yet!');
+
+    var location = ReactDOM.findDOMNode(this.refs.search).value;
+    console.log(location);
   },
   render: function render() {
     return React.createElement(
@@ -22232,7 +22234,7 @@ var Nav_inst = React.createClass({
             React.createElement(
               FormGroup,
               { role: "form" },
-              React.createElement(FormControl, { type: "text", placeholder: "Search" })
+              React.createElement(FormControl, { type: "text", placeholder: "Search", ref: "search" })
             ),
             ' ',
             React.createElement(
@@ -22332,53 +22334,42 @@ module.exports = Weather;
 var _reactBootstrap = __webpack_require__(97);
 
 var React = __webpack_require__(0);
+var ReactDOM = __webpack_require__(17);
 
 
 var WeatherForm = React.createClass({
-    displayName: 'WeatherForm',
-    getInitialState: function getInitialState() {
-        return {
-            value: ''
-        };
-    },
-
+    displayName: "WeatherForm",
 
     onFormSubmit: function onFormSubmit(e) {
         e.preventDefault();
 
-        var location = this.state.value;
+        var location = ReactDOM.findDOMNode(this.refs.location).value;
         if (location.length > 0) {
-            this.setState({ value: '' });
+            ReactDOM.findDOMNode(this.refs.location).value = '';
             this.props.onSearch(location);
         }
     },
 
-    handleChange: function handleChange(e) {
-        this.setState({ value: e.target.value });
-    },
-
-
     render: function render() {
         return React.createElement(
-            'div',
+            "div",
             null,
             React.createElement(
-                'form',
+                "form",
                 { onSubmit: this.onFormSubmit },
                 React.createElement(
                     _reactBootstrap.FormGroup,
-                    { controlId: 'formBasicText' },
+                    { controlId: "formBasicText" },
                     React.createElement(_reactBootstrap.FormControl, {
-                        type: 'text',
-                        placeholder: 'Enter city name',
-                        value: this.state.value,
-                        onChange: this.handleChange
+                        type: "text",
+                        placeholder: "Enter city name",
+                        ref: "location"
                     })
                 ),
                 React.createElement(
                     _reactBootstrap.Button,
-                    { type: 'submit', bsStyle: 'primary', bsSize: 'large', block: true },
-                    'Get weather!'
+                    { type: "submit", bsStyle: "primary", bsSize: "large", block: true },
+                    "Get weather!"
                 )
             )
         );

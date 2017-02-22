@@ -7,7 +7,9 @@ import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap';
 var Nav_inst = React.createClass({
     onSearch: function(e) {
         e.preventDefault();
-        console.log('Not wired up yet!')
+
+        var location = ReactDOM.findDOMNode(this.refs.search).value;
+        console.log(location)
     },
     render: function() {
         return (
@@ -34,7 +36,7 @@ var Nav_inst = React.createClass({
                   <Navbar.Form pullRight >
                   <form  onSubmit = { this.onSearch }>
                     <FormGroup role="form" >
-                      <FormControl type="text" placeholder="Search"/>
+                      <FormControl type="text" placeholder="Search" ref="search"/>
                     </FormGroup>
                     {' '}
                     <Button type="submit">Submit</Button>
