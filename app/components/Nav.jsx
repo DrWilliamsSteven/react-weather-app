@@ -9,7 +9,11 @@ var Nav_inst = React.createClass({
         e.preventDefault();
 
         var location = ReactDOM.findDOMNode(this.refs.search).value;
-        console.log(location)
+        var encodedLocation = encodeURIComponent(location);
+        if (location.length > 0) {
+            ReactDOM.findDOMNode(this.refs.search).value = '';
+            window.location.hash = '#/?location=' + encodedLocation;
+        }
     },
     render: function() {
         return (

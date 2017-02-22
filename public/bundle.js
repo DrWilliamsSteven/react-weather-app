@@ -22143,7 +22143,7 @@ module.exports = Main;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(console) {
+
 
 var _reactRouterBootstrap = __webpack_require__(508);
 
@@ -22171,7 +22171,11 @@ var Nav_inst = React.createClass({
     e.preventDefault();
 
     var location = ReactDOM.findDOMNode(this.refs.search).value;
-    console.log(location);
+    var encodedLocation = encodeURIComponent(location);
+    if (location.length > 0) {
+      ReactDOM.findDOMNode(this.refs.search).value = '';
+      window.location.hash = '#/?location=' + encodedLocation;
+    }
   },
   render: function render() {
     return React.createElement(
@@ -22250,7 +22254,6 @@ var Nav_inst = React.createClass({
 });
 
 module.exports = Nav_inst;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24)))
 
 /***/ }),
 /* 270 */
@@ -22276,7 +22279,13 @@ var Weather = React.createClass({
     handleSearch: function handleSearch(location) {
         var that = this;
 
-        this.setState({ isLoading: true });
+        this.setState({
+            isLoading: true,
+            errorMessage: undefined,
+            location: undefined,
+            temp: undefined
+
+        });
 
         openWeatherMap.getTemp(location).then(function (temp) {
             that.setState({
@@ -22289,11 +22298,31 @@ var Weather = React.createClass({
             alert(error);
         });
     },
+
+    componentDidMount: function componentDidMount() {
+        var location = this.props.location.query.location;
+
+        if (location && location.length > 0) {
+            this.handleSearch(location);
+            window.location.hash = '#/';
+        }
+    },
+
+    componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+        var location = newProps.location.query.location;
+
+        if (location && location.length > 0) {
+            this.handleSearch(location);
+            window.location.hash = '#/';
+        }
+    },
+
     render: function render() {
         var _state = this.state,
             isLoading = _state.isLoading,
             temp = _state.temp,
-            location = _state.location;
+            location = _state.location,
+            errorMessage = _state.errorMessage;
 
 
         function renderMessage() {
