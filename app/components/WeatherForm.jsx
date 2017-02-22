@@ -1,23 +1,40 @@
 var React = require("react")
-import { Button } from 'react-bootstrap';
+import { Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
 var WeatherForm = React.createClass({
+    getInitialState() {
+        return {
+            value: ''
+        };
+    },
+
     onFormSubmit: function(e) {
         e.preventDefault();
 
-        var location = this.refs.location.value;
-
+        var location = this.state.value
         if (location.length > 0) {
-            this.refs.location.value = '';
+            this.setState({ value: '' });
             this.props.onSearch(location);
         }
     },
+
+    handleChange(e) {
+        this.setState({ value: e.target.value });
+    },
+
     render: function() {
         return (
             <div>
-                <form onSubmit={this.onFormSubmit}>
-                    <input type="text" ref="location"></input>
-                    <Button type='submit' bsStyle="primary">Get weather!</Button>
+                <form onSubmit = { this.onFormSubmit }>
+                    <FormGroup controlId="formBasicText" >
+                      <FormControl
+                        type="text"
+                        placeholder="Enter city name"
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                      />
+                    </FormGroup>
+                    <Button type='submit' bsStyle="primary" bsSize="large" block>Get weather!</Button>
                 </form>
             </div>
 
