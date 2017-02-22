@@ -1,6 +1,6 @@
-var React = require("react")
-var ReactDOM = require("react-dom")
-import { Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+var React = require("react");
+var ReactDOM = require("react-dom");
+import { Button, FormGroup, FormControl } from 'react-bootstrap';
 
 var WeatherForm = React.createClass({
     onFormSubmit: function(e) {
@@ -19,11 +19,7 @@ var WeatherForm = React.createClass({
             <div>
                 <form onSubmit = { this.onFormSubmit }>
                     <FormGroup controlId="formBasicText" >
-                      <FormControl
-                        type="text"
-                        placeholder="Enter city name"
-                        ref="location"
-                      />
+                        <FormControl type="text" placeholder="Enter city name" ref="location" />
                     </FormGroup>
                     <Button type='submit' bsStyle="primary" bsSize="large" block>Get weather!</Button>
                 </form>

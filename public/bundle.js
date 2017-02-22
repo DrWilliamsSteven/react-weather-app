@@ -22165,92 +22165,92 @@ var _require2 = __webpack_require__(97),
     Button = _require2.Button;
 
 var Nav_inst = React.createClass({
-  displayName: "Nav_inst",
+    displayName: "Nav_inst",
 
-  onSearch: function onSearch(e) {
-    e.preventDefault();
+    onSearch: function onSearch(e) {
+        e.preventDefault();
+        var location = ReactDOM.findDOMNode(this.refs.search).value;
+        var encodedLocation = encodeURIComponent(location);
+        if (location.length > 0) {
+            ReactDOM.findDOMNode(this.refs.search).value = '';
+            window.location.hash = '#/?location=' + encodedLocation;
+        }
+    },
 
-    var location = ReactDOM.findDOMNode(this.refs.search).value;
-    var encodedLocation = encodeURIComponent(location);
-    if (location.length > 0) {
-      ReactDOM.findDOMNode(this.refs.search).value = '';
-      window.location.hash = '#/?location=' + encodedLocation;
-    }
-  },
-  render: function render() {
-    return React.createElement(
-      Navbar,
-      { inverse: true, collapseOnSelect: true },
-      React.createElement(
-        Navbar.Header,
-        null,
-        React.createElement(
-          Navbar.Brand,
-          null,
-          React.createElement(
-            "a",
-            { href: "#" },
-            "React Weather App"
-          )
-        ),
-        React.createElement(Navbar.Toggle, null)
-      ),
-      React.createElement(
-        Navbar.Collapse,
-        null,
-        React.createElement(
-          Nav,
-          null,
-          React.createElement(
-            _reactRouterBootstrap.IndexLinkContainer,
-            { to: "/" },
+    render: function render() {
+        return React.createElement(
+            Navbar,
+            { inverse: true, collapseOnSelect: true },
             React.createElement(
-              NavItem,
-              { eventKey: 1 },
-              "Get Weather"
-            )
-          ),
-          React.createElement(
-            _reactRouterBootstrap.LinkContainer,
-            { to: "/about" },
-            React.createElement(
-              NavItem,
-              { eventKey: 2 },
-              "About"
-            )
-          ),
-          React.createElement(
-            _reactRouterBootstrap.LinkContainer,
-            { to: "/examples" },
-            React.createElement(
-              NavItem,
-              { eventKey: 3 },
-              "Examples"
-            )
-          )
-        ),
-        React.createElement(
-          Navbar.Form,
-          { pullRight: true },
-          React.createElement(
-            "form",
-            { onSubmit: this.onSearch },
-            React.createElement(
-              FormGroup,
-              { role: "form" },
-              React.createElement(FormControl, { type: "text", placeholder: "Search", ref: "search" })
+                Navbar.Header,
+                null,
+                React.createElement(
+                    Navbar.Brand,
+                    null,
+                    React.createElement(
+                        "a",
+                        { href: "#" },
+                        "React Weather App"
+                    )
+                ),
+                React.createElement(Navbar.Toggle, null)
             ),
-            ' ',
             React.createElement(
-              Button,
-              { type: "submit" },
-              "Submit"
+                Navbar.Collapse,
+                null,
+                React.createElement(
+                    Nav,
+                    null,
+                    React.createElement(
+                        _reactRouterBootstrap.IndexLinkContainer,
+                        { to: "/" },
+                        React.createElement(
+                            NavItem,
+                            { eventKey: 1 },
+                            "Get Weather"
+                        )
+                    ),
+                    React.createElement(
+                        _reactRouterBootstrap.LinkContainer,
+                        { to: "/about" },
+                        React.createElement(
+                            NavItem,
+                            { eventKey: 2 },
+                            "About"
+                        )
+                    ),
+                    React.createElement(
+                        _reactRouterBootstrap.LinkContainer,
+                        { to: "/examples" },
+                        React.createElement(
+                            NavItem,
+                            { eventKey: 3 },
+                            "Examples"
+                        )
+                    )
+                ),
+                React.createElement(
+                    Navbar.Form,
+                    { pullRight: true },
+                    React.createElement(
+                        "form",
+                        { onSubmit: this.onSearch },
+                        React.createElement(
+                            FormGroup,
+                            { role: "form" },
+                            React.createElement(FormControl, { type: "text", placeholder: "Search", ref: "search" })
+                        ),
+                        ' ',
+                        React.createElement(
+                            Button,
+                            { type: "submit" },
+                            "Submit"
+                        )
+                    )
+                )
             )
-          )
-        )
-      )
-    );
-  }
+        );
+    }
 });
 
 module.exports = Nav_inst;
@@ -22271,20 +22271,32 @@ var Weather = React.createClass({
     displayName: "Weather",
 
     getInitialState: function getInitialState() {
-        return {
-            isLoading: false
-        };
+        return { isLoading: false };
+    },
+
+    componentDidMount: function componentDidMount() {
+        var location = this.props.location.query.location;
+        if (location && location.length > 0) {
+            this.handleSearch(location);
+            window.location.hash = '#/';
+        }
+    },
+
+    componentWillReceiveProps: function componentWillReceiveProps(newProps) {
+        var location = newProps.location.query.location;
+        if (location && location.length > 0) {
+            this.handleSearch(location);
+            window.location.hash = '#/';
+        }
     },
 
     handleSearch: function handleSearch(location) {
         var that = this;
-
         this.setState({
             isLoading: true,
             errorMessage: undefined,
             location: undefined,
             temp: undefined
-
         });
 
         openWeatherMap.getTemp(location).then(function (temp) {
@@ -22297,24 +22309,6 @@ var Weather = React.createClass({
             that.setState({ isLoading: false });
             alert(error);
         });
-    },
-
-    componentDidMount: function componentDidMount() {
-        var location = this.props.location.query.location;
-
-        if (location && location.length > 0) {
-            this.handleSearch(location);
-            window.location.hash = '#/';
-        }
-    },
-
-    componentWillReceiveProps: function componentWillReceiveProps(newProps) {
-        var location = newProps.location.query.location;
-
-        if (location && location.length > 0) {
-            this.handleSearch(location);
-            window.location.hash = '#/';
-        }
     },
 
     render: function render() {
@@ -22389,11 +22383,7 @@ var WeatherForm = React.createClass({
                 React.createElement(
                     _reactBootstrap.FormGroup,
                     { controlId: "formBasicText" },
-                    React.createElement(_reactBootstrap.FormControl, {
-                        type: "text",
-                        placeholder: "Enter city name",
-                        ref: "location"
-                    })
+                    React.createElement(_reactBootstrap.FormControl, { type: "text", placeholder: "Enter city name", ref: "location" })
                 ),
                 React.createElement(
                     _reactBootstrap.Button,
