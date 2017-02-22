@@ -14,7 +14,7 @@ var Nav_inst = React.createClass({
             <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
                   <Navbar.Brand>
-                    <a href="#">React-Bootstrap</a>
+                    <a href="#">React Weather App</a>
                   </Navbar.Brand>
                   <Navbar.Toggle />
                 </Navbar.Header>
