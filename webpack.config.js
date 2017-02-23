@@ -27,7 +27,8 @@ module.exports = {
             About: "About.jsx",
             Examples: "Examples.jsx",
 
-            openWeatherMap: 'openWeatherMap.jsx'
+            openWeatherMap: 'openWeatherMap.jsx',
+            ErrorModal: 'ErrorModal.jsx'
 
         },
         extensions: ['.js', '.jsx']
