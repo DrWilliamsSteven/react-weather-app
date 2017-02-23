@@ -34,7 +34,7 @@ var ErrorModal = React.createClass({
 
         var { title, message } = this.props;
         return (
-            <Modal id='error-modal' show={this.state.showModal} onHide={this.close}>
+            <Modal id='error-modal' bsSize="small" show={this.state.showModal} onHide={this.close}>
             <Modal.Header closeButton>
                 <Modal.Title>{title}</Modal.Title>
             </Modal.Header>

@@ -22095,7 +22095,7 @@ var ErrorModal = React.createClass({
 
         return React.createElement(
             Modal,
-            { id: 'error-modal', show: this.state.showModal, onHide: this.close },
+            { id: 'error-modal', bsSize: 'small', show: this.state.showModal, onHide: this.close },
             React.createElement(
                 Modal.Header,
                 { closeButton: true },
