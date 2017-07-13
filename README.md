@@ -1,4 +1,4 @@
-#React weather app
+# React weather app
 
 This is a react weather app.
 
